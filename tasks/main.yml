@@ -1,0 +1,13 @@
+---
+- name: Add nodejs signing key
+  apt_key:
+    url: "{{ _nodejs_repository_key }}"
+
+- name: Add nodejs repository
+  apt_repository:
+    repo: "{{ _nodejs_repository }}"
+    
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ _nodejs_packages }}"
