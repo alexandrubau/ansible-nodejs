@@ -2,5 +2,5 @@
 _nodejs_role: ~
 _nodejs_packages:
   - nodejs={{ nodejs_version }}
-_nodejs_repository: deb https://deb.nodesource.com/node_{{ nodejs_version[:1] }}.x xenial main
-_nodejs_repository_key: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+_nodejs_installer_download_url: https://deb.nodesource.com/setup_{{ nodejs_version | regex_search('^[\d]+') }}.x
+_nodejs_installer_download_dest: /tmp/nodejs-installer.sh

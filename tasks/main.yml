@@ -1,13 +1,13 @@
 ---
-- name: Add nodejs signing key
-  apt_key:
-    url: "{{ _nodejs_repository_key }}"
+- name: Download installer
+  get_url:
+    url: "{{ _nodejs_installer_download_url }}"
+    dest: "{{ _nodejs_installer_download_dest }}"
+    mode: 0744
 
 - name: Add nodejs repository
-  apt_repository:
-    repo: "{{ _nodejs_repository }}"
+  shell: "{{ _nodejs_installer_download_dest }}"
     
 - name: Install packages
   apt:
-    name: "{{ item }}"
-  with_items: "{{ _nodejs_packages }}"
+    name: "{{ _nodejs_packages }}"
