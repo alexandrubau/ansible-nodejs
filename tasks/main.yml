@@ -1,12 +1,25 @@
 ---
+- name: Check if nodejs is installed
+  stat:
+    path: /usr/bin/node
+  register: _nodejs_info
+
 - name: Download installer
   get_url:
     url: "{{ _nodejs_installer_download_url }}"
-    dest: "{{ _nodejs_installer_download_dest }}"
+    dest: /tmp/nodejs-installer.sh
     mode: 0744
+  when: not _nodejs_info.stat.exists
 
-- name: Add nodejs repository
-  shell: "{{ _nodejs_installer_download_dest }}"
+- name: Install nodejs
+  shell: /tmp/nodejs-installer.sh
+  when: not _nodejs_info.stat.exists
+
+- name: Delete nodejs installer
+  file:
+    path: /tmp/nodejs-installer.sh
+    state: absent
+  when: not _nodejs_info.stat.exists
     
 - name: Install packages
   apt:
