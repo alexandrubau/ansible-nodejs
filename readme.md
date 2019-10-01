@@ -4,7 +4,7 @@ Some description for Node.js role would be nice. Any volunteers?
 
 ### Parameters
 
-**nodejs_version** (type `string`, default `8.9.*`)
+**nodejs_version** (type `string`, default `10.14.*`)
 
 Example:
 ```yaml
