@@ -8,6 +8,7 @@
   get_url:
     url: "{{ _nodejs_installer_download_url }}"
     dest: /tmp/nodejs-installer.sh
+    mode: 0744
   when: not _nodejs_info.stat.exists
 
 - name: Install nodejs
