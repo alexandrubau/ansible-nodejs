@@ -1,5 +1,7 @@
 ---
 _nodejs_role: ~
 _nodejs_packages:
+  - git # required for npm
+  - unzip # recommended for npm
   - nodejs={{ nodejs_version }}
 _nodejs_installer_download_url: https://deb.nodesource.com/setup_{{ nodejs_version | regex_search('^[\d]+') }}.x
